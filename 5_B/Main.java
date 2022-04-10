@@ -20,5 +20,6 @@ public class Main {
       }
       System.out.printf("\n");
     }
+    sc.close();
   }
 }
