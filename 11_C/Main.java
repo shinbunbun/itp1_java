@@ -80,6 +80,16 @@ class Dice implements Cloneable {
     return false;
   }
 
+  Boolean isSameDice(Dice dice) {
+    Dice[] diceCases = createAllCases();
+    for (int i = 0; i < diceCases.length; i++) {
+      if (dice.compareDice(diceCases[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
 
 
@@ -94,14 +104,9 @@ public class Main {
       dice2.surfaces[i] = sc.nextInt();
     }
     sc.close();
-    Dice[] dice1Cases = dice1.createAllCases();
-    // System.out.println(Arrays.toString(dice2.surfaces));
-    for (int i = 0; i < dice1Cases.length; i++) {
-      // System.out.println(Arrays.toString(dice1Cases[i].surfaces));
-      if (dice2.compareDice(dice1Cases[i])) {
-        System.out.println("Yes");
-        return;
-      }
+    if (dice1.isSameDice(dice2)) {
+      System.out.println("Yes");
+      return;
     }
     System.out.println("No");
   }
