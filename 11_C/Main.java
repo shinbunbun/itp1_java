@@ -74,6 +74,12 @@ class Dice implements Cloneable {
     return res;
   }
 
+  Boolean compareDice(Dice dice) {
+    if (Arrays.equals(surfaces, dice.surfaces))
+      return true;
+    return false;
+  }
+
 }
 
 
@@ -92,7 +98,7 @@ public class Main {
     // System.out.println(Arrays.toString(dice2.surfaces));
     for (int i = 0; i < dice1Cases.length; i++) {
       // System.out.println(Arrays.toString(dice1Cases[i].surfaces));
-      if (Arrays.equals(dice1Cases[i].surfaces, dice2.surfaces)) {
+      if (dice2.compareDice(dice1Cases[i])) {
         System.out.println("Yes");
         return;
       }
