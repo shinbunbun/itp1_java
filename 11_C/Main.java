@@ -56,7 +56,7 @@ class Dice implements Cloneable {
     surfaces = newSurfaces;
   }
 
-  Dice[] createAllCases() {
+  private Dice[] createAllCases() {
     String[] orders = {"", "N", "N", "N", "E", "EE"};
     Dice[] res = new Dice[24];
     Dice tempDice = new Dice();
@@ -74,7 +74,7 @@ class Dice implements Cloneable {
     return res;
   }
 
-  Boolean compareDice(Dice dice) {
+  private Boolean compareDice(Dice dice) {
     if (Arrays.equals(surfaces, dice.surfaces))
       return true;
     return false;
