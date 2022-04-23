@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Dice {
+class Dice implements Cloneable {
   int[] surfaces;
 
   Dice() {
@@ -54,6 +54,25 @@ class Dice {
     newSurfaces[6] = surfaces[6];
     surfaces = newSurfaces;
   }
+
+  Dice[] createAllCase() {
+    String[] orders = {"", "N", "N", "N", "E", "EE"};
+    Dice[] res = new Dice[24];
+    Dice tempDice = new Dice();
+    tempDice.surfaces = this.surfaces.clone();
+    int cnt = 0;
+    for (int j = 0; j < orders.length; j++) {
+      tempDice.routate(orders[j]);
+      for (int j2 = 0; j2 < 4; j2++) {
+        tempDice.turnRight();
+        Dice diceCase = new Dice();
+        diceCase.surfaces = tempDice.surfaces.clone();
+        res[cnt++] = diceCase;
+      }
+    }
+    return res;
+  }
+
 }
 
 
@@ -65,25 +84,15 @@ public class Main {
       dice.surfaces[i + 1] = sc.nextInt();
     }
     int q = sc.nextInt();
-    String[] orders = {"", "N", "N", "N", "E", "EE"};
+    Dice[] allCase = dice.createAllCase();
     for (int i = 0; i < q; i++) {
       int top = sc.nextInt();
       int front = sc.nextInt();
-      Dice tempDice = dice;
-      for (int j = 0; j < orders.length; j++) {
-        Boolean flag = false;
-        tempDice.routate(orders[j]);
-        // System.out.println(Arrays.toString(tempDice.surfaces));
-        for (int j2 = 0; j2 < 4; j2++) {
-          tempDice.turnRight();
-          if (tempDice.surfaces[1] == top && tempDice.surfaces[2] == front) {
-            System.out.println(tempDice.surfaces[3]);
-            flag = true;
-            break;
-          }
-        }
-        if (flag)
+      for (int j = 0; j < allCase.length; j++) {
+        if (allCase[j].surfaces[1] == top && allCase[j].surfaces[2] == front) {
+          System.out.println(allCase[j].surfaces[3]);
           break;
+        }
       }
     }
     sc.close();
