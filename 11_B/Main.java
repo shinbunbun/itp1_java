@@ -55,7 +55,7 @@ class Dice implements Cloneable {
     surfaces = newSurfaces;
   }
 
-  Dice[] createAllCase() {
+  Dice[] createAllCases() {
     String[] orders = {"", "N", "N", "N", "E", "EE"};
     Dice[] res = new Dice[24];
     Dice tempDice = new Dice();
@@ -84,7 +84,7 @@ public class Main {
       dice.surfaces[i + 1] = sc.nextInt();
     }
     int q = sc.nextInt();
-    Dice[] allCase = dice.createAllCase();
+    Dice[] allCase = dice.createAllCases();
     for (int i = 0; i < q; i++) {
       int top = sc.nextInt();
       int front = sc.nextInt();
